@@ -42,3 +42,17 @@ pd.Index(y_train).value_counts() --> value counts with array
 Branch layer models eg --> Inception
 
 contratistive loss --> ?
+
+
+-----------------------------------------
+
+model.compile(optimizer=rms, 
+              loss = {'wine_type' : 'binary_crossentropy',
+                       'wine_quality' : 'mean_squared_error'
+                      },
+              metrics = {'wine_type' : 'accuracy',
+                          'wine_quality': tf.keras.metrics.RootMeanSquaredError()
+                        }
+              )
+			  
+			  
