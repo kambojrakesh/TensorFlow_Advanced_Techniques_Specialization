@@ -25,9 +25,10 @@ def train_and_save_model():
     ## n_samples = number of rows/number of samples
     ## n_features = number of total features
     ## n_classes = number of classes - two in case of binary classifier
-    X,y = make_classification(n_samples = 1000,n_features = 4,n_classes = 2)
+    X,y = make_classification(n_samples = 1000,n_features = 30,n_classes = 2)
     ## Train Test Split for evaluation of data - 20% stratified test split
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=42,stratify=y)
+    print(X_train)
     ## Building Model
     logistic_regression = LogisticRegression(random_state=42)
     ## Training the Model
@@ -35,15 +36,15 @@ def train_and_save_model():
     ## Getting Predictions
     predictions = logistic_regression.predict(X_test)
     ## Analyzing valuation Metrics
-    print("Accuracy Score of Model : "+str(accuracy_score(y_test,predictions)))
-    print("Classification Report : ")
-    print(str(classification_report(y_test,predictions)))
+    #print("Accuracy Score of Model : "+str(accuracy_score(y_test,predictions)))
+    #print("Classification Report : ")
+    #print(str(classification_report(y_test,predictions)))
+    print(predictions)
     ## Saving Model in pickle format
     ## Exports a pickle file named Logisitc Regrssion in current working directory
-    output_path = os.getcwd()
-    file_name = '/LogisticRegression.pkl'
-    output  = open(output_path+file_name,'wb')
-    pickle.dump(logistic_regression,output)
-    output.close()
-
+    #output_path = os.getcwd()
+    #ile_name = '/LogisticRegression1.pkl'
+   # output  = open(output_path+file_name,'wb')
+    #pickle.dump(logistic_regression,output)
+    #output.close()
 train_and_save_model()

@@ -8,7 +8,7 @@ from flasgger import Swagger
 app=Flask(__name__)
 Swagger(app)
 
-pickle_in = open("classifier.pkl","rb")
+pickle_in = open("LogisticRegression.pkl","rb")
 classifier=pickle.load(pickle_in)
 
 
@@ -20,7 +20,7 @@ def hello():
 
 @app.route('/predict_test', methods=["POST"])
 def predict_test_class():
-    
+    from flask import jsonify
     """Let's predict the class for iris
     This is using docstrings for specifications.
     ---
@@ -35,9 +35,11 @@ def predict_test_class():
         
     """
     df_test=pd.read_csv(request.files.get("file"))
+
     prediction=classifier.predict(df_test)
     return " The Predicated Class for the TestFile is"+ str(list(prediction))
 
 
 if __name__=='__main__':
+    app.debug = True
     app.run()
